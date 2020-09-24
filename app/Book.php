@@ -30,28 +30,13 @@ class Book extends Model
        $offday=$from->day-$timefrom->day;
             $timefrom->add($offday.' days');
             $timeto->add($offday.' days');
-        
-       // $expert->WorkingHours->From->setDate('Y-m-d',$from->format('Y-m-d'),$from->tz);
-       
-        //$expert->WorkingHours->To->setDate('Y-m-d',$to->format('Y-m-d'),$to->tz);
-        
-        //$timefrom=Carbon::create($from->year,$from->month,$from->day,$timef->format('H'),$timef->minute,0,null);
-        //$timefrom->setTime('H:i',$expert->WorkingHours->From->format('H:i'));
-        //$timeto=Carbon::create($to->year,$to->month,$to->day,$timet->format('H'),$timet->minute,0,null);
-        
-
-    
-       /*if ($timefrom>$timeto){
-        $timefrom->addHours(12);
-        $timeto->addHours(12);
-       }*/
 
         if ($from<$timefrom){
             
             return false;
         }
         if ($to>$timeto){
-            throw new Exception('okkkkkkkkkkkkkkk'.$timeto->format('Y-m-d H:i'));
+           
             return false;
         }
         $books=Book::where('appointment_date','>=',$timefrom->format('Y-m-d'))->get();
