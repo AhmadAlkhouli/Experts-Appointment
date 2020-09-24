@@ -27,6 +27,7 @@
                 <option v-model="slots" v-for="slot in slots" :value="slot" >@{{dateFormat(slot.From)}}--->@{{dateFormat(slot.To)}}</option>
                 </select>
             </h6>
+            <div >@{{errMsg}}</div>
             <button class="btn btn-primary" v-on:click="invoke">Book</button>
             </div>
 
@@ -52,6 +53,7 @@ var app =new Vue({
       slots:[],
       slot:null,
       user:'',
+      errMsg:''
    },
    methods: {
         getSchedule : function(){
@@ -66,6 +68,7 @@ var app =new Vue({
         });
        },
       invoke : function(){
+          var that=this;
          console.log("in function 'invoke'");
          var host = window.location.hostname;
         
@@ -82,7 +85,11 @@ var app =new Vue({
          axios.post("/api/books",para).then( function(response){
             console.log("in response-function");
             console.log(response.data);
-        });
+            window.location.href = '/experts';
+        }).catch(error => {
+      this.errorMessage = error.message;
+      that.errMsg="There was an error! ", error;
+    });
     },
     dateFormat(date){
         //formated=utcDate.toLocaleString().split(',');

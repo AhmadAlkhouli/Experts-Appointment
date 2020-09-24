@@ -43,7 +43,11 @@ class Expert{
         $start=$expert->WorkingHours->From->setTimezone('UTC');
         $end=$expert->WorkingHours->To->setTimezone('UTC');
 
-        $books=Book::where([['expert_id',$id],['appointment_date','>=',$date->format('Y-m-d')]])->orderBy('from_time')->get();
+        $offsetday=$date->day-$start->day;
+            $start->add($offsetday.' days');
+            $end->add($offsetday.' days');
+
+        $books=Book::where([['expert_id',$id],['appointment_date','=',$date->format('Y-m-d')]])->orderBy('from_time')->get();
         
         $count=count($books);
         if ($count==0) {

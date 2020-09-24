@@ -23,3 +23,4 @@ Route::get('experts/{id}','ExpertsController@show');
 Route::get('experts/{id}/books','BookController@getBooks');
 
 Route::get('experts/{id}/book','ExpertsController@book');
+Route::redirect('/', '/experts');
