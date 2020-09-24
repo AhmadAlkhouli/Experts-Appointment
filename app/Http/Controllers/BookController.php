@@ -41,13 +41,13 @@ class BookController extends Controller
         //Y-m-d\TH:i:s\Z
         // old Y-m-d H:i O
         $fromTime=Carbon::createFromFormat('Y-m-d\TH:i:s.u\Z',$request['from_time']);
-        $fromTime->setTimezone('UTC');
+        //$fromTime->setTimezone('UTC');
 
         $toTime=Carbon::createFromFormat('Y-m-d\TH:i:s.u\Z',$request['to_time']);
-        $toTime->setTimezone('UTC');
+        //$toTime->setTimezone('UTC');
         
         $appointmentDate=Carbon::createFromFormat('Y-m-d\TH:i:s.u\Z',$request['from_time']);
-        $appointmentDate->setTimezone('UTC');
+        //$appointmentDate->setTimezone('UTC');
         
         $appointmentType=$request['appointment_type'];
         $userId=$request['user'];
