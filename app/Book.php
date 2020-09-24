@@ -39,7 +39,8 @@ class Book extends Model
            
             return false;
         }
-        $books=Book::where('appointment_date','>=',$timefrom->format('Y-m-d'))->get();
+        $books=Book::where('appointment_date','=',$from->format('Y-m-d'))->
+        where('appointment_date','=',$to->format('Y-m-d'))->orderby('from_time')->get();
         
         foreach($books as $book){
             if (($from<$book->from_time && $to<$book->from_time)||

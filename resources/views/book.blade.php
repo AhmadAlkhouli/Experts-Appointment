@@ -15,7 +15,7 @@
             <input ref="expid" type="hidden"  value="{{$expert->Id}}"/>
             <h6 class="card-text">User <input type="text" v-model="user"></h6>
             <h6 class="card-text">Period 
-                <select id="appointmentDate" type="date" v-model="input.appointmentType">
+                <select id="appointmentDate" type="date" v-model="input.appointmentType" v-on:change="getSchedule()">
                 <option value="m15">15 Minutes</option>
                 <option value="m30">30 Minutes</option>
                 <option value="m45">45 Minutes</option>
@@ -87,8 +87,7 @@ var app =new Vue({
             console.log(response.data);
             window.location.href = '/experts';
         }).catch(error => {
-      this.errorMessage = error.message;
-      that.errMsg="There was an error! ", error;
+      that.errMsg="There was an error! "+ error.message;
     });
     },
     dateFormat(date){
